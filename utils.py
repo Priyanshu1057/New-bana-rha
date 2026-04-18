@@ -1,6 +1,7 @@
 import re
 import os
 import logging
+import httpx
 import random
 import string
 from info import *
@@ -511,19 +512,39 @@ async def search_gagala(text):
 
 async def get_shortlink(link, grp_id, is_second_shortener=False, is_third_shortener=False):
     settings = await get_settings(grp_id)
-    if is_third_shortener:             
+
+    # Select API and site based on flags
+    if is_third_shortener:
         api, site = settings['api_three'], settings['shortner_three']
+    elif is_second_shortener:
+        api, site = settings['api_two'], settings['shortner_two']
     else:
-        if is_second_shortener:
-            api, site = settings['api_two'], settings['shortner_two']
-        else:
-            api, site = settings['api'], settings['shortner']
-    shortzy = Shortzy(api, site)
+        api, site = settings['api'], settings['shortner']
+
     try:
-        link = await shortzy.convert(link)
+        # Try Shortzy method first
+        shortzy = Shortzy(api, site)
+        return await shortzy.convert(link)
     except Exception as e:
-        link = await shortzy.get_quick_link(link)
-    return link
+        print(f"Shortzy failed: {e}, trying universal method...")
+
+        # Universal HTTP fallback
+        try:
+            async with httpx.AsyncClient() as client:
+                resp = await client.get(site, params={"api": api, "url": link}, timeout=15)
+                data = resp.json()
+                print("Universal shortener response:", data)
+            
+            if isinstance(data, dict):
+                for key in ["shortenedUrl", "shorturl", "short", "url"]:
+                    if key in data:
+                        return data[key]
+
+            return link  # fallback to original link if nothing works
+        except Exception as e2:
+            print(f"Universal fallback failed: {e2}")
+            return link
+
 
 async def get_settings(group_id):
     settings = temp.SETTINGS.get(group_id)
