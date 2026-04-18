@@ -19,6 +19,7 @@ PyLeaves==1.0.2
 humanize
 Pillow
 psutil
+httpx
 numpy
 wheel
 ujson
