@@ -239,7 +239,10 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a href="https://t.me/FilmyflixHD">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/FilmyflixHD">[ FilmyflixHD ]</a></b>"""
+    CAPTION = """<b><a href="https://t.me/FilmyflixHD">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/FilmyflixHD">[ FilmyflixHD ]</a></b>
+
+<b>🔞 18+ bot – @xContentForYoubot
+🔞 18+ bot – @xContentForYoubot</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
