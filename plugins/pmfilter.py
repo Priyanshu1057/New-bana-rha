@@ -1167,13 +1167,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "start":
         buttons = [[
-                    InlineKeyboardButton('🔰 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🔰', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('𑁍 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 𑁍', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton(' ʜᴇʟᴘ 📢', callback_data='help'),
-                    InlineKeyboardButton(' ᴀʙᴏᴜᴛ 📖', callback_data='about')
+                    InlineKeyboardButton('「 ✦ ᴏᴡɴᴇʀ ✦ 」', url='http://t.me/FilmyflixHD_Supportbot')
                 ],[
-                    InlineKeyboardButton('ᴛᴏᴘ sᴇᴀʀᴄʜɪɴɢ ⭐', callback_data="topsearch"),
-                     InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data="premium_info"),
+                    InlineKeyboardButton('✎ᝰ.ʜᴇʟᴘ', callback_data='help'),
+                    InlineKeyboardButton('ⓘ ᴀʙᴏᴜᴛ', callback_data='about')
+                ],[
+                    InlineKeyboardButton('〄 ᴄʜᴀɴɴᴇʟ 〄', url='https://t.me/FilmyflixHD'),
+                    InlineKeyboardButton('〄 ɢʀᴏᴜᴘ 〄', url='https://t.me/+EjztZH1gX05jMGY1')
+                ],[
+                   InlineKeyboardButton('✦ ᴛʀᴇɴᴅɪɴɢ ✦', callback_data="topsearch"),
+                    InlineKeyboardButton('✦ ᴘʀᴇᴍɪᴜᴍ ✦', callback_data="premium_info")
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
@@ -1243,10 +1248,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton('‼️ ᴅɪꜱᴄʟᴀɪᴍᴇʀ ‼️', callback_data='disclaimer'),
-            InlineKeyboardButton ('🪔 sᴏᴜʀᴄᴇ', callback_data='source'),
+            InlineKeyboardButton('‼️ ᴅɪꜱᴄʟᴀɪᴍᴇʀ ‼️', url='https://telegra.ph/Disclaimer-08-03-19'),
+            InlineKeyboardButton ('🪔 sᴏᴜʀᴄᴇ', url='https://t.me/+sE5BYFSoe9YxNDJl'),
         ],[
-            InlineKeyboardButton('ᴅᴏɴᴀᴛɪᴏɴ 💰', callback_data='donation'),
+            InlineKeyboardButton('ᴅᴏɴᴀᴛɪᴏɴ 💰', callback_data='donation'), 
         ],[
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
         ]]
