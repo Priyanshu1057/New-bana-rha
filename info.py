@@ -104,22 +104,22 @@ IS_VERIFY = is_enabled(environ.get('IS_VERIFY', 'True'), True)  # Verification O
 LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1003013199447')) #Verification Channel Id 
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://i.ibb.co/yB6thn5R/x.jpg")
 
-TUTORIAL = environ.get("TUTORIAL", "https://t.me/tutorial_filx/5")   # Tutorial link for verification
+TUTORIAL = environ.get("TUTORIAL", "https://t.me/tutorial_filx/7")   # Tutorial link for verification
 TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/tutorial_filx/5")   # Second tutorial link for verification
-TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/tutorial_filx/5")   # Third tutorial link for verification
+TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/tutorial_filx/7")   # Third tutorial link for verification
 
 # Verification (Must Fill All Veriables. Else You Got Error
-SHORTENER_API = environ.get("SHORTENER_API", "") # Shortener API key
-SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "") # Shortener website
+SHORTENER_API = environ.get("SHORTENER_API", "f9da968c27a8594f2bbc3b2cd1e8778fa756b3a5") # Shortener API key
+SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "https://linkverify.vercel.app/api") # Shortener website
 
-SHORTENER_API2 = environ.get("SHORTENER_API2", "")  # Shortener API key for second website
-SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "") # Shortener website for second website
+SHORTENER_API2 = environ.get("SHORTENER_API2", "3adca196c74366f9d2991580d3fc459015b8ae36")  # Shortener API key for second website
+SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "https://linkverify.vercel.app/api") # Shortener website for second website
 
-SHORTENER_API3 = environ.get("SHORTENER_API3", "")
-SHORTENER_WEBSITE3 = environ.get("SHORTENER_WEBSITE3", "") # Shortener website for third website
+SHORTENER_API3 = environ.get("SHORTENER_API3", "f9da968c27a8594f2bbc3b2cd1e8778fa756b3a5")
+SHORTENER_WEBSITE3 = environ.get("SHORTENER_WEBSITE3", "https://linkverify.vercel.app/api") # Shortener website for third website
 
-TWO_VERIFY_GAP = int(environ.get('TWO_VERIFY_GAP', "")) # Time gap for two-step verification in seconds (default: 20 minutes)
-THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', ""))    
+TWO_VERIFY_GAP = int(environ.get('TWO_VERIFY_GAP', "1200")) # Time gap for two-step verification in seconds (default: 20 minutes)
+THREE_VERIFY_GAP = int(environ.get('THREE_VERIFY_GAP', "4200"))    
 
 # ============================
 # Channel & Group Links Configuration
