@@ -14,7 +14,7 @@ from database.refer import referdb
 from database.config_db import mdb
 from pyrogram.types import LinkPreviewOptions, InlineKeyboardButton, InlineKeyboardMarkup, Message, ReplyKeyboardMarkup, CopyTextButton
 from pyrogram import Client, filters, enums, StopPropagation
-from pyrogram.errors import FloodWait, UserNotParticipant , ChannelInvalid, PeerIdInvalid
+from pyrogram.errors import FloodWait, UserNotParticipant, ChannelInvalid, PeerIdInvalid, UserIsBlocked, InputUserDeactivated
 from database.ia_filterdb import Media, Media2, get_file_details, unpack_new_file_id, get_bad_files, save_file
 from database.users_chats_db import db
 from info import (
@@ -785,7 +785,10 @@ async def send_msg(bot, message):
         parts = message.text.split(" ", 1)
         if len(parts) < 2:
             return await message.reply_text("<b>ᴜꜱᴇ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ᴀꜱ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇꜱꜱᴀɢᴇ ᴜꜱɪɴɢ ᴛʜᴇ ᴛᴀʀɢᴇᴛ ᴄʜᴀᴛ ɪᴅ. ꜰᴏʀ ᴇɢ:  /send ᴜꜱᴇʀɪᴅ</b>")
-        target_id = parts[1]
+        try:
+            target_id = int(parts[1])
+        except ValueError:
+            target_id = parts[1]
         try:
             user = await bot.get_users(target_id)
             if await db.is_user_exist(user.id):
@@ -793,6 +796,12 @@ async def send_msg(bot, message):
                 await message.reply_text(f"<b>ʏᴏᴜʀ ᴍᴇꜱꜱᴀɢᴇ ʜᴀꜱ ʙᴇᴇɴ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ꜱᴇɴᴛ ᴛᴏ {user.mention}.</b>")
             else:
                 await message.reply_text("<b>ᴛʜɪꜱ ᴜꜱᴇʀ ʜᴀꜱɴ'ᴛ ꜱᴛᴀʀᴛᴇᴅ ᴛʜɪꜱ ʙᴏᴛ ʏᴇᴛ !</b>")
+        except UserIsBlocked:
+            await message.reply_text("<b>ᴛʜɪꜱ ᴜꜱᴇʀ ʜᴀꜱ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ !</b>")
+        except PeerIdInvalid:
+            await message.reply_text("<b>ɪɴᴠᴀʟɪᴅ ᴜꜱᴇʀ ɪᴅ, ᴏʀ ᴛʜᴇ ʙᴏᴛ ʜᴀꜱɴ'ᴛ ᴍᴇᴛ ᴛʜɪꜱ ᴜꜱᴇʀ ʏᴇᴛ !</b>")
+        except InputUserDeactivated:
+            await message.reply_text("<b>ᴛʜɪꜱ ᴜꜱᴇʀ ᴀᴄᴄᴏᴜɴᴛ ɪꜱ ᴅᴇʟᴇᴛᴇᴅ / ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ !</b>")
         except Exception as e:
             await message.reply_text(f"<b>Error: {e}</b>")
     else:
